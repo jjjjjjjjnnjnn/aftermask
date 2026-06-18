@@ -32,3 +32,16 @@ models/
 # Temporary
 *.tmp
 *.log
+
+# Private Assets (do not push to public repo)
+data/knowledge_graph_v2.json
+data/archetypes/
+data/events/
+data/rules/
+data/factions/
+data/skills/
+data/worlds/
+docs/design/GAME_DESIGN_BIBLE.md
+docs/design/GLOBAL_POSITIONING.md
+docs/design/SOCIAL_ANALYSIS.md
+tools/novel_mining/
