@@ -1,0 +1,34 @@
+# 百世江湖 .gitignore
+
+# Godot
+.godot/
+*.import
+export_presets.cfg
+
+# Builds
+build/
+export/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Saves (player data)
+user://saves/
+
+# AI Models (large files)
+models/
+*.gguf
+*.bin
+
+# Temporary
+*.tmp
+*.log
