@@ -42,6 +42,12 @@ signal dialogue_started(npc_id: int, dialogue_data: Dictionary)
 signal dialogue_ended()
 signal notification_requested(message: String, type: String)
 
+# === 遗产事件 ===
+signal legacy_created(entity_id: int, legacy_data: Dictionary)
+signal legacy_changed(legacy_id: int, change_type: String, new_state: Dictionary)
+signal legacy_decayed(legacy_id: int, decay_amount: float)
+signal legacy_triggered(legacy_id: int, trigger_event: Dictionary)
+
 # === 游戏状态事件 ===
 signal game_saved(save_data: Dictionary)
 signal game_loaded(save_data: Dictionary)

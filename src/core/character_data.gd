@@ -30,6 +30,10 @@ extends EntityData
 @export var memory_fragments: Array[Dictionary] = []
 # 轮回奖励
 @export var reincarnation_bonuses: Dictionary = {}
+# 遗产数据
+@export var legacy_id: int = -1  # 关联的遗产ID
+@export var legacy_effects: Dictionary = {}  # 受到的遗产影响
+@export var created_legacies: Array[int] = []  # 创造的遗产ID列表
 
 func get_stat(stat_name: String) -> int:
 	return stats.get(stat_name, 0)
