@@ -1,0 +1,139 @@
+{
+  "version": "0.1.0",
+  "source": "综合提取",
+  "extracted_at": "2026-06-18",
+  "rules": [
+    {
+      "rule_id": "karma_system",
+      "name": "因果报应系统",
+      "sources": ["踹掉PUA系统", "被设计的人生", "理综73的我"],
+      "category": "moral_logic",
+      "description": "善有善报，恶有恶报，但报应可能延迟",
+      "mechanics": [
+        {
+          "action": "help_stranger",
+          "karma_change": +10,
+          "delay": "0-7天",
+          "effect": "随机好事件"
+        },
+        {
+          "action": "betray_trust",
+          "karma_change": -30,
+          "delay": "7-30天",
+          "effect": "被信任的人背叛"
+        },
+        {
+          "action": "save_life",
+          "karma_change": +50,
+          "delay": "30-100天",
+          "effect": "关键时刻获得帮助"
+        },
+        {
+          "action": "murder_innocent",
+          "karma_change": -100,
+          "delay": "即时",
+          "effect": "被追杀 + 名声扫地"
+        }
+      ],
+      "game_mechanic": "隐藏Karma值，影响随机事件和NPC态度"
+    },
+    {
+      "rule_id": "face_system",
+      "name": "面子与尊严",
+      "sources": ["踹掉PUA系统", "综合"],
+      "category": "social_norms",
+      "description": "江湖人最重面子，当众羞辱比杀人更严重",
+      "rules": [
+        {
+          "rule": "当众羞辱 = 死仇",
+          "enforcement": "必须报复，否则被视为软弱",
+          "consequence": "失去所有盟友"
+        },
+        {
+          "rule": "给面子 = 政治资本",
+          "enforcement": "被给面子的人有义务回报",
+          "consequence": "建立债务关系"
+        },
+        {
+          "rule": "认怂 = 社会性死亡",
+          "enforcement": "在公开场合退缩",
+          "consequence": "永远被看不起"
+        }
+      ],
+      "game_mechanic": "面子值系统，影响社交和谈判"
+    },
+    {
+      "rule_id": "sect_loyalty",
+      "name": "门派忠诚",
+      "sources": ["踹掉PUA系统", "综合"],
+      "category": "faction_rules",
+      "description": "加入门派后，门派利益高于个人利益",
+      "rules": [
+        {
+          "rule": "叛门 = 全江湖追杀",
+          "enforcement": "门派发布追杀令",
+          "consequence": "无法在任何正规门派立足"
+        },
+        {
+          "rule": "师命不可违",
+          "enforcement": "社会压力 + 可能的物理惩罚",
+          "consequence": "失去修炼资源"
+        },
+        {
+          "rule": "门派荣辱与共",
+          "enforcement": "门派行为影响所有成员",
+          "consequence": "门派声望 = 个人声望"
+        }
+      ],
+      "game_mechanic": "门派声望系统，影响成员待遇"
+    },
+    {
+      "rule_id": "reincarnation_rules",
+      "name": "转生法则",
+      "sources": ["百世江湖原创"],
+      "category": "world_laws",
+      "description": "灵魂不灭，死后转生，但记忆会消散",
+      "rules": [
+        {
+          "rule": "死亡触发转生",
+          "enforcement": "自动",
+          "consequence": "开始新一世"
+        },
+        {
+          "rule": "记忆会消散",
+          "enforcement": "衰减算法",
+          "consequence": "只保留最重要的记忆"
+        },
+        {
+          "rule": "前世行为影响来世",
+          "enforcement": "Karma系统",
+          "consequence": "NPC对新角色的态度"
+        },
+        {
+          "rule": "传说记忆永存",
+          "enforcement": "跨世代传播",
+          "consequence": "英雄/恶人的事迹被永远记住"
+        }
+      ],
+      "game_mechanic": "转生系统核心规则"
+    },
+    {
+      "rule_id": "jianghu_hierarchy",
+      "name": "江湖等级",
+      "sources": ["综合"],
+      "category": "social_structure",
+      "description": "实力决定地位，但关系和背景也很重要",
+      "hierarchy": [
+        {"rank": "武神", "rarity": "传说", "power": 100},
+        {"rank": "武圣", "rarity": "极稀有", "power": 90},
+        {"rank": "武宗", "rarity": "稀有", "power": 80},
+        {"rank": "武师", "rarity": "少见", "power": 60},
+        {"rank": "武者", "rarity": "普通", "power": 40},
+        {"rank": "学徒", "rarity": "常见", "power": 20},
+        {"rank": "平民", "rarity": "大量", "power": 10},
+        {"rank": "乞丐", "rarity": "底层", "power": 5}
+      ],
+      "game_mechanic": "境界系统，影响解锁内容和NPC态度"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "version": "0.1.0",
+  "source": "综合提取",
+  "extracted_at": "2026-06-18",
+  "events": [
+    {
+      "event_id": "betrayal_revenge_cycle",
+      "name": "背叛与复仇循环",
+      "sources": ["踹掉PUA系统", "被设计的人生"],
+      "category": "conflict",
+      "trigger": {
+        "conditions": ["trust < 30", "opportunity > 70", "resentment > 50"],
+        "probability": 0.4
+      },
+      "participants": {
+        "required": ["betrayer", "victim"],
+        "optional": ["witness", "avenger"]
+      },
+      "phases": [
+        {
+          "phase": "setup",
+          "description": "背叛者隐藏意图，受害者信任",
+          "duration": "3-7天"
+        },
+        {
+          "phase": "betrayal",
+          "description": "背叛行为发生",
+          "impact": "high_emotional"
+        },
+        {
+          "phase": "discovery",
+          "description": "受害者发现真相",
+          "options": ["forgive", "seek_revenge", "distance"]
+        },
+        {
+          "phase": "resolution",
+          "description": "复仇或和解",
+          "outcomes": ["revenge_complete", "forgiveness", "mutual_destruction"]
+        }
+      ],
+      "effects": {
+        "betrayer": {"reputation": -50, "guilt": 30},
+        "victim": {"trust": -80, "vengeance": 70},
+        "witnesses": {"trust": -20, "caution": +30}
+      },
+      "game_mechanic": "触发长期仇恨系统，可能持续多世"
+    },
+    {
+      "event_id": "master_disciple_bond",
+      "name": "师徒情深",
+      "sources": ["踹掉PUA系统", "理综73的我"],
+      "category": "relationship",
+      "trigger": {
+        "conditions": ["mentor_sees_potential", "student_shows_dedication"],
+        "probability": 0.6
+      },
+      "participants": {
+        "required": ["master", "disciple"],
+        "optional": ["rival_disciple", "sect_members"]
+      },
+      "phases": [
+        {
+          "phase": "observation",
+          "description": "师父观察弟子品性",
+          "duration": "7-30天"
+        },
+        {
+          "phase": "testing",
+          "description": "设置考验",
+          "tests": ["loyalty", "courage", "wisdom"]
+        },
+        {
+          "phase": "acceptance",
+          "description": "正式收徒",
+          "ceremony": true
+        },
+        {
+          "phase": "training",
+          "description": "传授技艺",
+          "duration": "30-365天"
+        }
+      ],
+      "effects": {
+        "master": {"legacy": +30, "responsibility": +50},
+        "disciple": {"growth_speed": x2, "faction_access": true},
+        "relationship": {"bond": 80, "debt": 100}
+      },
+      "game_mechanic": "师徒系统，影响成长速度和技能获取"
+    },
+    {
+      "event_id": "underdog_rise",
+      "name": "逆袭崛起",
+      "sources": ["踹掉PUA系统", "理综73的我"],
+      "category": "growth",
+      "trigger": {
+        "conditions": ["humiliation > 70", "hidden_power觉醒", "opportunity"],
+        "probability": 0.8
+      },
+      "participants": {
+        "required": ["protagonist"],
+        "optional": ["oppressor", "witnesses", "ally"]
+      },
+      "phases": [
+        {
+          "phase": "suppression",
+          "description": "被压迫、被嘲笑",
+          "emotional_impact": "anger + determination"
+        },
+        {
+          "phase": "preparation",
+          "description": "暗中积累力量",
+          "duration": "7-30天"
+        },
+        {
+          "phase": "revelation",
+          "description": "展示真实实力",
+          "impact": "shock_all"
+        },
+        {
+          "phase": "domination",
+          "description": "碾压曾经的压迫者",
+          "satisfaction": "maximum"
+        }
+      ],
+      "effects": {
+        "protagonist": {"reputation": +50, "confidence": +80, "enemies": +20},
+        "oppressor": {"reputation": -80, "fear": 90},
+        "witnesses": {"respect": +40, "fear": +30}
+      },
+      "game_mechanic": "隐藏实力系统，积累到一定程度可触发逆袭事件"
+    },
+    {
+      "event_id": "knowledge_revelation",
+      "name": "知识觉醒",
+      "sources": ["理综73的我"],
+      "category": "discovery",
+      "trigger": {
+        "conditions": ["遇到难题", "知识碎片收集完成", "悟性 > 5"],
+        "probability": 0.5
+      },
+      "participants": {
+        "required": ["learner"],
+        "optional": ["teacher", "rival"]
+      },
+      "phases": [
+        {
+          "phase": "confusion",
+          "description": "面对未知领域",
+          "emotion": "curiosity + frustration"
+        },
+        {
+          "phase": "study",
+          "description": "收集知识碎片",
+          "progress": "0-100%"
+        },
+        {
+          "phase": "epiphany",
+          "description": "突然领悟",
+          "trigger": "随机 or 特定条件"
+        },
+        {
+          "phase": "mastery",
+          "description": "掌握新能力",
+          "power_unlock": true
+        }
+      ],
+      "effects": {
+        "learner": {"skill": +1, "comprehension": +5, "new_ability": true}
+      },
+      "game_mechanic": "知识解锁系统，现实知识可转化为游戏能力"
+    },
+    {
+      "event_id": "faction_war",
+      "name": "势力战争",
+      "sources": ["踹掉PUA系统", "综合"],
+      "category": "conflict",
+      "trigger": {
+        "conditions": ["territory_dispute", "resource_conflict", "revenge"],
+        "probability": 0.3
+      },
+      "participants": {
+        "required": ["faction_a", "faction_b"],
+        "optional": ["neutral_factions", "player"]
+      },
+      "phases": [
+        {
+          "phase": "tension",
+          "description": "关系恶化",
+          "events": ["diplomatic_incidents", "resource_competition"]
+        },
+        {
+          "phase": "ultimatum",
+          "description": "最后通牒",
+          "options": ["submit", "fight", "negotiate"]
+        },
+        {
+          "phase": "war",
+          "description": "全面冲突",
+          "duration": "7-30天"
+        },
+        {
+          "phase": "aftermath",
+          "description": "战后重建",
+          "outcomes": ["victory", "defeat", "stalemate", "annihilation"]
+        }
+      ],
+      "effects": {
+        "winner": {"territory": +1, "reputation": +50, "resources": +100},
+        "loser": {"territory": -1, "reputation": -50, "resources": -100},
+        "player": {"opportunity": "choose_side", "reputation": varies}
+      },
+      "game_mechanic": "势力战争系统，玩家可参与或旁观"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "version": "0.1.0",
+  "source": "理综73的我，在异世界封神",
+  "extracted_at": "2026-06-18",
+  "archetypes": [
+    {
+      "archetype_id": "knowledge_summoner",
+      "name": "知识召唤师",
+      "personality": {
+        "openness": 9,
+        "conscientiousness": 5,
+        "extraversion": 6,
+        "agreeableness": 7,
+        "neuroticism": 5
+      },
+      "traits": ["curious", "creative_applications", "empathetic", "underdog"],
+      "behavior_tendencies": {
+        "loyalty": 85,
+        "greed": 20,
+        "vengeance": 40,
+        "compassion": 80
+      },
+      "typical_arc": "学渣被嘲笑 → 获得知识之力 → 用知识解决问题 → 成为知识的传道者",
+      "game_mechanic": "知识解锁系统，真实世界的知识可以转化为游戏内能力"
+    },
+    {
+      "archetype_id": "knowledge_spirit",
+      "name": "学科之灵",
+      "personality": {
+        "openness": 10,
+        "conscientiousness": 7,
+        "extraversion": 6,
+        "agreeableness": 5,
+        "neuroticism": 3
+      },
+      "traits": ["specialized", "quirky", "passionate", "literal_minded"],
+      "behavior_tendencies": {
+        "loyalty": 70,
+        "greed": 15,
+        "vengeance": 20,
+        "compassion": 60
+      },
+      "typical_arc": "被遗忘 → 被召唤 → 信任召唤师 → 共同战斗",
+      "game_mechanic": "可收集的知识伙伴系统，每个知识领域有独特的伙伴"
+    },
+    {
+      "archetype_id": "愚者_member",
+      "name": "愚者会成员",
+      "personality": {
+        "openness": 3,
+        "conscientiousness": 2,
+        "extraversion": 5,
+        "agreeableness": 4,
+        "neuroticism": 6
+      },
+      "traits": ["anti_intellectual", "resentful", "manipulative", "fearful"],
+      "behavior_tendencies": {
+        "loyalty": 30,
+        "greed": 70,
+        "vengeance": 60,
+        "compassion": 20
+      },
+      "typical_arc": "被洗脑 → 执行命令 → 遇到主角 → 动摇 → 可能叛变",
+      "game_mechanic": "可被说服转化的敌人系统"
+    }
+  ]
+}
