@@ -19,6 +19,7 @@ WorldManager="*res://src/autoloads/world_manager.gd"
 SaveManager="*res://src/autoloads/save_manager.gd"
 AudioManager="*res://src/autoloads/audio_manager.gd"
 LegacySystem="*res://src/systems/legacy/legacy_system.gd"
+MMLClient="*res://ai-runtime/mml_client.gd"
 
 [display]
 

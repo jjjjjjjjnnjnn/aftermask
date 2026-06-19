@@ -8,12 +8,15 @@
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| **Phase** | Phase 0 — Validation | 🔄 In Progress |
+| **Phase** | Phase 0.5 — Reincarnation Engine Built | 🔄 In Progress |
 | **TLR Target** | ≥80% | ⏳ Pending test |
-| **Days Active** | 2 | ✅ |
-| **Total Commits** | 15+ | ✅ |
+| **Days Active** | 3 | ✅ |
+| **Total Commits** | 18+ | ✅ |
 | **Open Issues** | 0 critical | ✅ |
 | **Test Players** | 0/10 | ⏳ Pending |
+| **Reincarnation System** | 320+ lines | ✅ Built |
+| **NPC Dialogue System** | 350+ lines | ✅ Built |
+| **Core Loop Tests** | 10/10 passing | ✅ Verified |
 
 ---
 

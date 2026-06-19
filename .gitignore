@@ -24,6 +24,10 @@ desktop.ini
 # Saves (player data)
 user://saves/
 
+# AI Runtime (llama.cpp binaries — download via setup script)
+ai-runtime/llama/*.exe
+ai-runtime/llama/*.dll
+
 # AI Models (large files)
 models/
 *.gguf
