@@ -1,7 +1,7 @@
 # Aftermask
 
 > **Every life leaves a mask on the world.**
-> **Jede Leben hinterlässt eine Maske auf der Welt.**
+> **Jedes Leben hinterlässt eine Maske auf der Welt.**
 > **每一世都在世界留下一张面具。**
 
 ---
@@ -224,6 +224,6 @@ Wenn du an einem Playtest interessiert bist, eröffne bitte ein [Issue](../../is
 
 <p align="center">
   <em>Built with Godot 4 · Made with determination</em><br>
-  <em>Entwickelt mit Gottot 4 · Mit Entschlossenheit gemacht</em><br>
+  <em>Entwickelt mit Godot 4 · Mit Entschlossenheit gemacht</em><br>
   <em>基于Godot 4 · 用心打造</em>
 </p>

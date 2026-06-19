@@ -66,7 +66,7 @@ func initialize_world() -> void:
 	world_events.clear()
 
 func register_entity(entity_data: Dictionary) -> int:
-	var id = next_entity_id
+	var id: int = next_entity_id
 	next_entity_id += 1
 	entities[id] = entity_data
 	entities[id]["id"] = id
@@ -90,7 +90,7 @@ func advance_time(minutes: int = 30) -> void:
 		world_time["day"] += 1
 	
 	# 季节变化（简化：30天一季）
-	var season_index = ["spring", "summer", "autumn", "winter"].find(world_time["season"])
+	var season_index: int = ["spring", "summer", "autumn", "winter"].find(world_time["season"])
 	if world_time["day"] > 30:
 		world_time["day"] = 1
 		season_index = (season_index + 1) % 4
@@ -107,9 +107,9 @@ func change_location(location_name: String) -> bool:
 	return false
 
 func get_npcs_at_location(location_name: String) -> Array:
-	var npcs = []
+	var npcs: Array = []
 	for entity_id in entities:
-		var entity = entities[entity_id]
+		var entity: Dictionary = entities[entity_id]
 		if entity.get("type") == "npc" and entity.get("location") == location_name:
 			npcs.append(entity)
 	return npcs

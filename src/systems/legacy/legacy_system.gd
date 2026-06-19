@@ -1,5 +1,6 @@
 ## LegacySystem — 遗产系统核心
 ## 管理玩家行为对世界的永久影响
+class_name LegacySystem
 extends Node
 
 # === 遗产类型 ===
@@ -137,16 +138,16 @@ func calculate_legacy_impact(legacy_id: int) -> float:
 	return impact
 
 func get_total_impact_at_location(location_name: String) -> float:
-	var total = 0.0
-	var legacies = get_legacies_at_location(location_name)
-	for legacy in legacies:
+	var total: float = 0.0
+	var location_legacies: Array[LegacyRecord] = get_legacies_at_location(location_name)
+	for legacy: LegacyRecord in location_legacies:
 		total += calculate_legacy_impact(legacy.id)
 	return total
 
 func get_total_impact_for_faction(faction_id: String) -> float:
-	var total = 0.0
-	var legacies = get_legacies_for_faction(faction_id)
-	for legacy in legacies:
+	var total: float = 0.0
+	var faction_legacies: Array[LegacyRecord] = get_legacies_for_faction(faction_id)
+	for legacy: LegacyRecord in faction_legacies:
 		total += calculate_legacy_impact(legacy.id)
 	return total
 
@@ -185,7 +186,8 @@ func load_data(data: Dictionary) -> void:
 	current_era = data.get("current_era", 1)
 	next_legacy_id = data.get("next_legacy_id", 0)
 	
-	var legacy_data = data.get("legacies", {})
+	var legacy_data: Dictionary = data.get("legacies", {})
 	legacies.clear()
-	for legacy_id in legacy_data:
-		legacies[legacy_id] = LegacyRecord.from_dict(legacy_data[legacy_id])
+	for legacy_id_str: String in legacy_data:
+		var legacy_id_int: int = int(legacy_id_str)
+		legacies[legacy_id_int] = LegacyRecord.from_dict(legacy_data[legacy_id_str])

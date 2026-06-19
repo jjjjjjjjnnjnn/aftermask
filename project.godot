@@ -4,8 +4,8 @@
 
 [application]
 
-config/name="百世江湖"
-config/description="一个会记住你百世轮回的武侠世界"
+config/name="Aftermask"
+config/description="Every life leaves a mask on the world."
 config/version="0.1.0"
 run/main_scene="res://scenes/ui/title_screen.tscn"
 config/features=PackedStringArray("4.4")
@@ -18,6 +18,7 @@ GameManager="*res://src/autoloads/game_manager.gd"
 WorldManager="*res://src/autoloads/world_manager.gd"
 SaveManager="*res://src/autoloads/save_manager.gd"
 AudioManager="*res://src/autoloads/audio_manager.gd"
+LegacySystem="*res://src/systems/legacy/legacy_system.gd"
 
 [display]
 

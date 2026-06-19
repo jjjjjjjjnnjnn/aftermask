@@ -1,4 +1,5 @@
 ## NPCController — NPC行为控制器
+class_name NPCController
 extends Node2D
 
 @export var entity_id: int = -1
@@ -11,8 +12,11 @@ var target_position: Vector2 = Vector2.ZERO
 var interaction_range: float = 50.0
 
 func _ready() -> void:
-	# 连接信号
 	EventBus.memory_recorded.connect(_on_memory_recorded)
+
+func _exit_tree() -> void:
+	if EventBus.memory_recorded.is_connected(_on_memory_recorded):
+		EventBus.memory_recorded.disconnect(_on_memory_recorded)
 
 func _physics_process(delta: float) -> void:
 	match current_state:
@@ -33,7 +37,7 @@ func _process_idle(delta: float) -> void:
 		_start_walking()
 
 func _process_walking(delta: float) -> void:
-	var direction = (target_position - position).normalized()
+	var direction: Vector2 = (target_position - position).normalized()
 	position += direction * 50.0 * delta
 	
 	if position.distance_to(target_position) < 5.0:

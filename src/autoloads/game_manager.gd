@@ -43,9 +43,11 @@ func start_new_game() -> void:
 func save_game() -> void:
 	SaveManager.save_game()
 
-func load_game() -> void:
-	SaveManager.load_game()
-	change_state(GameState.PLAYING)
+func load_game() -> bool:
+	if SaveManager.load_game():
+		change_state(GameState.PLAYING)
+		return true
+	return false
 
 func quit_game() -> void:
 	get_tree().quit()

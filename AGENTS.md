@@ -10,7 +10,7 @@
 **Engine**: Godot 4.x + GDScript
 
 **Tagline**: Every life leaves a mask on the world.
-**Lebensdevise**: Jede Leben hinterlässt eine Maske auf der Welt.
+**Lebensdevise**: Jedes Leben hinterlässt eine Maske auf der Welt.
 **核心口号**: 每一世都在世界留下一张面具。
 
 **Goal**: Create a reincarnation simulator where player actions permanently change the world.

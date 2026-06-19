@@ -4,13 +4,13 @@
 
 **Aftermask** is a reincarnation simulation game built with Godot 4.
 
-**Aftermask** ist eine Reinkarnationssimulation, entwickelt mit Gottot 4.
+**Aftermask** ist eine Reinkarnationssimulation, entwickelt mit Godot 4.
 
 **Aftermask** 是一款基于Godot 4的轮回模拟器游戏。
 
 **Core Principle**: Every life leaves a mask on the world.
 
-**Kernprinzip**: Jede Leben hinterlässt eine Maske auf der Welt.
+**Kernprinzip**: Jedes Leben hinterlässt eine Maske auf der Welt.
 
 **核心原则**: 每一世都在世界留下一张面具。
 

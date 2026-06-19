@@ -100,7 +100,7 @@ def intro():
     display_header("AFTERMASK")
     print("""
   Every life leaves a mask on the world.
-  Jede Leben hinterlässt eine Maske auf der Welt.
+  Jedes Leben hinterlässt eine Maske auf der Welt.
   每一世都在世界留下一张面具。
 
   A reincarnation simulation.

@@ -1,4 +1,4 @@
-# 百世江湖 .gitignore
+# Aftermask .gitignore
 
 # Godot
 .godot/
@@ -32,6 +32,15 @@ models/
 # Temporary
 *.tmp
 *.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Test output
+test_result_*.json
 
 # Private Assets (do not push to public repo)
 data/knowledge_graph_v2.json
