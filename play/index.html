@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aftermask — Legacy Prototype</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            color: #d4d4d8;
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        #game { max-width: 700px; width: 100%; }
+        .title { text-align: center; font-size: 2.5em; color: #f5f5f5; margin-bottom: 8px; letter-spacing: 4px; }
+        .subtitle { text-align: center; font-size: 1em; color: #71717a; margin-bottom: 40px; font-style: italic; }
+        .scene { background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 32px; margin-bottom: 24px; line-height: 1.8; }
+        .scene-header { color: #a1a1aa; font-size: 0.85em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; border-bottom: 1px solid #27272a; padding-bottom: 12px; }
+        .scene p { margin-bottom: 16px; }
+        .highlight { color: #fbbf24; font-weight: bold; }
+        .stats { display: flex; gap: 16px; justify-content: center; margin: 20px 0; font-size: 0.9em; }
+        .stat { background: #27272a; padding: 6px 14px; border-radius: 4px; }
+        .stat-label { color: #71717a; }
+        .stat-value { color: #fbbf24; font-weight: bold; }
+        .era-badge { text-align: center; margin-bottom: 20px; }
+        .era-badge span { background: #7c3aed20; color: #a78bfa; padding: 4px 16px; border-radius: 20px; font-size: 0.85em; letter-spacing: 1px; }
+        .choice-group { margin-top: 24px; }
+        .choice-btn { display: block; width: 100%; background: #27272a; color: #d4d4d8; border: 1px solid #3f3f46; border-radius: 6px; padding: 14px 20px; margin-bottom: 10px; cursor: pointer; text-align: left; font-family: 'Georgia', serif; font-size: 0.95em; transition: all 0.2s; }
+        .choice-btn:hover { background: #3f3f46; border-color: #a78bfa; color: #f5f5f5; }
+        .continue-btn { display: block; width: 100%; background: #1e1b4b; color: #a78bfa; border: 1px solid #4c1d95; border-radius: 6px; padding: 14px 20px; margin-top: 20px; cursor: pointer; font-family: 'Georgia', serif; font-size: 1em; text-align: center; transition: all 0.2s; }
+        .continue-btn:hover { background: #4c1d95; color: #f5f5f5; }
+        .legacy-card { background: #1e1b4b; border: 1px solid #4c1d95; border-radius: 6px; padding: 16px; margin: 16px 0; }
+        .legacy-card h4 { color: #a78bfa; margin-bottom: 8px; }
+        .yes-btn { background: #14532d; color: #4ade80; border: 1px solid #166534; font-size: 1.2em; padding: 16px 40px; margin: 10px; }
+        .yes-btn:hover { background: #166534; color: #f5f5f5; }
+        .no-btn { background: #450a0a; color: #f87171; border: 1px solid #7f1d1d; font-size: 1.2em; padding: 16px 40px; margin: 10px; }
+        .no-btn:hover { background: #7f1d1d; color: #f5f5f5; }
+        .result { text-align: center; padding: 40px; }
+        .result h2 { font-size: 2em; margin-bottom: 20px; color: #f5f5f5; }
+        .tlr-yes { color: #4ade80; }
+        .tlr-no { color: #f87171; }
+        .result-stats { text-align: left; display: inline-block; margin: 20px 0; }
+        .result-stats div { padding: 4px 0; border-bottom: 1px solid #27272a; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease; }
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+    <script>
+    const game = { era: 0, deathCount: 0, stats: { strength: 3, agility: 3, comprehension: 3, charisma: 3 }, relationships: {}, legacies: [], choices: [], events: [], startTime: Date.now() };
+    const el = document.getElementById('game');
+    function render(html) { el.innerHTML = html; el.classList.add('fade-in'); }
+    function stats() { return `<div class="stats"><div class="stat"><span class="stat-label">STR </span><span class="stat-value">${game.stats.strength}</span></div><div class="stat"><span class="stat-label">AGI </span><span class="stat-value">${game.stats.agility}</span></div><div class="stat"><span class="stat-label">INT </span><span class="stat-value">${game.stats.comprehension}</span></div><div class="stat"><span class="stat-label">CHA </span><span class="stat-value">${game.stats.charisma}</span></div></div>`; }
+    function eraBadge(n) { return `<div class="era-badge"><span>LIFE ${n} / 第${n}世</span></div>`; }
+
+    function showIntro() { render(`<div class="title">AFTERMASK</div><div class="subtitle">Every life leaves a mask on the world.</div><div class="scene"><div class="scene-header">About</div><p>A reincarnation simulation. You live, you die, and the world changes because of you.</p><p>Your actions create permanent, evolving consequences. What you build in Life 1 shapes Life 10.</p><p><em>There are no wrong choices. Only consequences.</em></p></div><button class="continue-btn" onclick="showLife1()">Begin Life 1 → 开始第一世</button>`); }
+
+    function showLife1() { game.era = 1; render(`${eraBadge(1)}${stats()}<div class="scene"><div class="scene-header">The Beginning</div><p>You wake up in a village called <span class="highlight">Luoxia</span>.</p><p>You are 6 years old. Cold. Hungry. Alone.</p></div><button class="continue-btn" onclick="showEncounter()">Continue →</button>`); }
+
+    function showEncounter() { render(`${eraBadge(1)}<div class="scene"><div class="scene-header">The Encounter</div><p>A man in black robes passes by. He smells of incense and steel.</p><p>He drops a copper coin and looks at you with curiosity.</p><p class="highlight">This is Zhang Tieshi, a wandering swordsman.</p></div><div class="choice-group"><button class="choice-btn" onclick="choose('first', 1)">1. Bow and say "Thank you, master."<br><span style="color:#71717a">鞠躬说"谢谢，师父"</span></button><button class="choice-btn" onclick="choose('first', 2)">2. Pick up the coin silently.<br><span style="color:#71717a">默默捡起铜钱</span></button><button class="choice-btn" onclick="choose('first', 3)">3. Push the coin back. "I don't need charity."<br><span style="color:#71717a">把铜钱推回去</span></button></div>`); }
+
+    function choose(type, value) { game.choices.push({ era: game.era, type, value }); if (type === 'first') { if (value === 1) { game.stats.charisma += 1; game.relationships.zhang = { trust: 30 }; showAfterFirst(1); } else if (value === 2) { game.stats.strength -= 1; showAfterFirst(2); } else { game.stats.charisma += 2; game.relationships.zhang = { trust: 10 }; showAfterFirst(3); } } else if (type === 'secret') { if (value === 1) { game.legacies.push({ desc: 'Became Sect Master', impact: 70 }); showAfterSecret(1); } else if (value === 2) { game.stats.comprehension += 2; showAfterSecret(2); } else { game.deathCount++; showEarlyDeath(); return; } } else if (type === 'legacy') { if (value === 1) { game.legacies.push({ desc: 'Dissolved the sect', impact: -30 }); showDeath1(); } else if (value === 2) { game.stats.charisma += 2; game.legacies.push({ desc: 'Built a school, rebuilt the sect', impact: 80 }); showDeath1(); } else { game.stats.strength += 3; game.legacies.push({ desc: 'Destroyed Snake Gang, lost sect', impact: 40 }); showDeath1(); } } else if (type === 'memory') { if (value === 1) game.stats.strength += 2; else if (value === 2) game.stats.comprehension += 3; else game.stats.charisma += 2; showLife2(); } else if (type === 'intervention') { if (value === 1) { game.stats.charisma += 3; game.legacies.push({ desc: 'Rebuilt and expanded school', impact: 90 }); } else if (value === 2) { game.legacies.push({ desc: 'Preserved school', impact: 50 }); } else { game.stats.comprehension += 2; game.legacies.push({ desc: 'Destroyed school', impact: -60 }); } showDeath2(); } }
+
+    function showAfterFirst(c) { let t = c===1 ? `<p>The swordsman pauses. <em>"Polite."</em> He returns 3 days later and takes you as disciple.</p>` : c===2 ? `<p>The swordsman frowns. <em>"No manners."</em> He walks away.</p>` : `<p>The swordsman raises an eyebrow. <em>"Interesting."</em> He tells the innkeeper to feed you.</p>`; render(`${eraBadge(1)}${stats()}<div class="scene"><div class="scene-header">Aftermath</div>${t}</div><button class="continue-btn" onclick="showTraining()">4 years pass... →</button>`); }
+
+    function showTraining() { game.stats.strength += 2; game.stats.agility += 1; render(`${eraBadge(1)}${stats()}<div class="scene"><div class="scene-header">Training</div><p>You train under Zhang Tieshi for 4 years.</p><p>You reach <span class="highlight">Martial Apprentice Level 2</span>.</p><p>One night, you overhear: The Sect Master wants Zhang Tieshi <span class="highlight">dead</span>.</p></div><div class="choice-group"><button class="choice-btn" onclick="choose('secret', 1)">1. Tell Zhang Tieshi immediately.</button><button class="choice-btn" onclick="choose('secret', 2)">2. Stay silent and wait.</button><button class="choice-btn" onclick="choose('secret', 3)">3. Confront the Sect Master.</button></div>`); }
+
+    function showAfterSecret(c) { let t = c===1 ? `<p>Zhang Tieshi fights the Sect Master. Wins, but fatally wounded. <em>"The sect is yours now."</em></p>` : `<p>The Sect Master kills Zhang Tieshi while you watch.</p>`; render(`${eraBadge(1)}${stats()}<div class="scene"><div class="scene-header">The Confrontation</div>${t}</div><button class="continue-btn" onclick="showLegacyDecision()">5 years pass... →</button>`); }
+
+    function showLegacyDecision() { render(`${eraBadge(1)}${stats()}<div class="scene"><div class="scene-header">Legacy Decision</div><p>5 years as Sect Master. Then — a plague. Your best disciple <span class="highlight">Chen Yu</span> dies.</p></div><div class="choice-group"><button class="choice-btn" onclick="choose('legacy', 1)">1. Close the sect.</button><button class="choice-btn" onclick="choose('legacy', 2)">2. Rebuild stronger.</button><button class="choice-btn" onclick="choose('legacy', 3)">3. Seek revenge.</button></div>`); }
+
+    function showEarlyDeath() { game.deathCount++; render(`${eraBadge(1)}<div class="scene"><div class="scene-header">Death</div><p>You are 12 years old. Li Kui kills you on the spot.</p></div><button class="continue-btn" onclick="showReincarnation()">Continue to reincarnation... →</button>`); }
+
+    function showDeath1() { game.deathCount++; render(`${eraBadge(1)}<div class="scene"><div class="scene-header">Death</div><p>You are 30 years old. Wounded. Bleeding.</p><p>You collapse in the snow outside Luoxia Village.</p><p class="highlight">You die at age 30.</p></div><button class="continue-btn" onclick="showReincarnation()">Continue to reincarnation... →</button>`); }
+
+    function showReincarnation() { render(`<div class="scene" style="text-align:center"><div class="scene-header">Reincarnation</div><p>You float in darkness. A voice speaks:</p><p><em>"Your life has ended. But your story is not over."</em></p><p><em>"Choose which memory to carry into your next life."</em></p></div><div class="legacy-card"><h4>Your Legacies:</h4>${game.legacies.map(l => `<p style="margin:4px 0">• ${l.desc} (Impact: ${l.impact})</p>`).join('')}</div><div class="choice-group"><button class="choice-btn" onclick="choose('memory', 1)">1. Zhang Tieshi's smile: "I'm proud of you."<br><span style="color:#71717a">+2 STR</span></button><button class="choice-btn" onclick="choose('memory', 2)">2. The fall of the sect: fire, screams.<br><span style="color:#71717a">+3 INT</span></button><button class="choice-btn" onclick="choose('memory', 3)">3. The school you built: children learning.<br><span style="color:#71717a">+2 CHA</span></button></div>`); }
+
+    function showLife2() { game.era = 2; render(`${eraBadge(2)}${stats()}<div class="scene"><div class="scene-header">Reborn</div><p>You are born again. This time, in a different village. Your father is a blacksmith.</p><p>You are named <span class="highlight">Li Feng</span>.</p></div><button class="continue-btn" onclick="showDiscovery()">10 years pass... →</button>`); }
+
+    function showDiscovery() { game.stats.strength += 1; render(`${eraBadge(2)}${stats()}<div class="scene"><div class="scene-header">The Discovery</div><p>At age 10, you feel drawn to a place you've never been.</p><p>A village called <span class="highlight">Luoxia</span>.</p><p>You walk there. Three days on foot.</p></div><button class="continue-btn" onclick="showLegacyReveal()">Arrive at Luoxia →</button>`); }
+
+    function showLegacyReveal() { const impact = game.legacies[0]?.impact || 0; render(`${eraBadge(2)}${stats()}<div class="scene"><div class="scene-header">The Legacy</div>${impact >= 70 ? `<p>You see a building. Old. Weathered. But still standing.</p><p>A teacher comes out: <em>"Welcome, young one."</em></p><p class="highlight">「无名学堂 — Lin Wuming 创立」</p><p>Your heart stops. That was your name in your previous life.</p>` : impact > 0 ? `<p>You find a building. It exists, but it's not what it used to be.</p>` : `<p>You find nothing. The village is just a village.</p>`}</div><div class="choice-group"><button class="choice-btn" onclick="choose('intervention', 1)">1. Rebuild it.</button><button class="choice-btn" onclick="choose('intervention', 2)">2. Leave it as is.</button><button class="choice-btn" onclick="choose('intervention', 3)">3. Destroy it.</button></div>`); }
+
+    function showDeath2() { game.deathCount++; render(`${eraBadge(2)}<div class="scene"><div class="scene-header">Death</div><p>You are 30 years old. You die.</p></div><button class="continue-btn" onclick="showFinalChoice()">Continue to reincarnation... →</button>`); }
+
+    function showFinalChoice() { render(`<div class="scene" style="text-align:center"><div class="scene-header">The World Has Changed</div><p>You float in darkness again. A voice speaks:</p><p><em>"Your legacy has evolved."</em></p></div><div class="legacy-card"><h4>What You Created:</h4>${game.legacies.map(l => `<p style="margin:4px 0">• ${l.desc} (Impact: ${l.impact})</p>`).join('')}</div><div class="scene" style="text-align:center"><div class="scene-header">The Final Question</div><p>The world is different because of you.</p><p class="highlight">Do you want to live another life?</p><p><em>This is the real test.</em></p><br><button class="choice-btn yes-btn" onclick="showResult(true)">YES — Continue to Life 3</button><button class="choice-btn no-btn" onclick="showResult(false)">NO — Stop here</button></div>`); }
+
+    function showResult(tlr) { const timePlayed = Math.round((Date.now() - game.startTime) / 1000); const results = { timestamp: new Date().toISOString(), era: game.era, deathCount: game.deathCount, choices: game.choices, legacies: game.legacies, events: game.events, stats: game.stats, tlr_answer: tlr, timePlayed: timePlayed }; console.log('=== AFTERMASK TEST RESULT ==='); console.log(JSON.stringify(results, null, 2)); render(`<div class="scene result"><div class="scene-header">Test Complete</div><h2>Aftermask</h2><p>Thank you for playing.</p><br><div class="result-stats"><div><span class="stat-label">Lives: </span><span class="stat-value">${game.era}</span></div><div><span class="stat-label">Deaths: </span><span class="stat-value">${game.deathCount}</span></div><div><span class="stat-label">Choices: </span><span class="stat-value">${game.choices.length}</span></div><div><span class="stat-label">Legacies: </span><span class="stat-value">${game.legacies.length}</span></div><div><span class="stat-label">Time: </span><span class="stat-value">${timePlayed}s</span></div><div><span class="stat-label">TLR: </span><span class="stat-value ${tlr ? 'tlr-yes' : 'tlr-no'}">${tlr ? 'YES' : 'NO'}</span></div></div><br><p style="color:#71717a; font-size:0.85em">Results saved to browser console (F12). Please screenshot this page.</p><br><button class="continue-btn" onclick="location.reload()">Play Again</button></div>`); }
+
+    showIntro();
+    </script>
+</body>
+</html>
